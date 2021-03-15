@@ -14,6 +14,7 @@ TARGET_GPU_COUNT = {
     "gpu-V100-1": 1,
     "gpu-V100-2": 2,
     "gpu-V100-4": 4,
+    "gpu-8x-a1001": 8,
 }
 
 
@@ -33,6 +34,7 @@ class JobArguments:
 def submit_azureml_run(args: JobArguments):
     """Submit GLUE experiment to azureml."""
     ws = Workspace.from_config()
+    print("ws: ", ws)
 
     # get root of git repo
     prefix = Path(__file__).parent
@@ -93,6 +95,7 @@ if __name__ == "__main__":
         # "gpu-V100-1",  # single GPU
         # "gpu-V100-2",  # two GPUs
         "gpu-V100-4",  # four GPUs
+        # "gpu-8x-a1001",  # eight A100s
     ]
 
     # https://huggingface.co/transformers/pretrained_models.html
@@ -127,6 +130,9 @@ if __name__ == "__main__":
                     target_name=target_name,
                     model_checkpoint=model_checkpoint,
                     task=task,
+
+                    node_count=2,
+                    num_train_epochs=1,
                 )
 
                 submit_azureml_run(args)
