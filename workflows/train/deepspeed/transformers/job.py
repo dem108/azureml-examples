@@ -94,18 +94,18 @@ if __name__ == "__main__":
     target_names = [
         # "gpu-V100-1",  # single GPU
         # "gpu-V100-2",  # two GPUs
-        "gpu-V100-4",  # four GPUs
-        # "gpu-8x-a1001",  # eight A100s
+        # "gpu-V100-4",  # four GPUs
+        "gpu-8x-a1001",  # eight A100s
     ]
 
     # https://huggingface.co/transformers/pretrained_models.html
     model_checkpoints = [
-        "distilbert-base-uncased",  # 66M
+        # "distilbert-base-uncased",  # 66M
         # "bert-base-uncased",  # 110M
         # "bert-large-uncased",  # 336M
         # "gpt2",  # 117M
         # "gpt2-medium",  # 345M
-        # "gpt2-large",  # 774M
+        "gpt2-large",  # 774M
         # "gpt2-xl",  # 1558M
     ]
 
@@ -115,8 +115,8 @@ if __name__ == "__main__":
         # "rte",  # 2.5k, inference
         # "mrpc",  # 3.7k, paraphrase
         # "stsb",  # 7k, sentence similarity
-        "cola",  # 8.5k, single-sentence
-        # "sst2",  # 67k, single-sentence
+        # "cola",  # 8.5k, single-sentence
+        "sst2",  # 67k, single-sentence
         # "qnli",  # 105k, inference
         # "mnli",  # 393k, inference
         # "qqp",  # 364k, paraphrase
@@ -132,7 +132,7 @@ if __name__ == "__main__":
                     task=task,
 
                     node_count=2,
-                    num_train_epochs=1,
+                    num_train_epochs=10,
                 )
 
                 submit_azureml_run(args)
