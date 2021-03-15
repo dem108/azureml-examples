@@ -11,4 +11,4 @@
 *.ckpt
 *lightning_logs
 
-config.json
+config.json*
